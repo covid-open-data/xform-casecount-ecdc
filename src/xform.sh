@@ -13,9 +13,12 @@ if [ -f "${INSTALL_FILE}" ]; then
   if [ ${INSTALL_STATUS} -ne 0 ]; then
     echo "Dependency install failed."
     exit 1
+  else
+    echo "Dependency install succeeded."
   fi
 fi
 
 # The command to execute the xform.
+echo "Running xform..."
 Rscript "${GITHUB_WORKSPACE}/src/xform.R"
 exit $?

@@ -3,8 +3,6 @@ suppressPackageStartupMessages(library(httr))
 
 dir.create("output", showWarning = FALSE)
 dir.create("output/admin0", showWarning = FALSE)
-dir.create("output/admin1", showWarning = FALSE)
-dir.create("output/admin2", showWarning = FALSE)
 
 httr::GET("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv",
   httr::authenticate(":", ":", type = "ntlm"),
@@ -13,7 +11,7 @@ httr::GET("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv",
 data <- suppressMessages(readr::read_csv(tf, na = "")) %>%
   dplyr::mutate(dateRep = as.Date(dateRep, format = "%d/%m/%Y")) %>%
   dplyr::select(-day, -month, -year, -countryterritoryCode,
-    -countriesAndTerritories, -popData2018, -continentExp) %>%
+    -countriesAndTerritories, -popData2019, -continentExp) %>%
   dplyr::rename(date = "dateRep", admin0_code = "geoId") %>%
   dplyr::mutate(admin0_code = ifelse(admin0_code == "JPG11668", "International Conveyance", admin0_code)) %>%
   dplyr::select(admin0_code, date, cases, deaths)
