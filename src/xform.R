@@ -61,7 +61,8 @@ continents <- admin0 %>%
 who_regions <- admin0 %>%
   dplyr::left_join(geoutils::admin0, by = "admin0_code") %>%
   dplyr::group_by(who_region_code, date) %>%
-  dplyr::summarise(cases = sum(cases), deaths = sum(deaths))
+  dplyr::summarise(cases = sum(cases), deaths = sum(deaths)) %>%
+  dplyr::filter(!is.na(who_region_code))
 
 global <- admin0 %>%
   dplyr::group_by(date) %>%
