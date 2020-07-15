@@ -13,7 +13,7 @@ data <- suppressMessages(readr::read_csv(tf, na = "")) %>%
   dplyr::select(-day, -month, -year, -countryterritoryCode,
     -countriesAndTerritories, -popData2019, -continentExp) %>%
   dplyr::rename(date = "dateRep", admin0_code = "geoId") %>%
-  dplyr::mutate(admin0_code = ifelse(admin0_code == "JPG11668", "International Conveyance", admin0_code)) %>%
+  dplyr::mutate(admin0_code = ifelse(admin0_code == "JPG11668", "ZZ", admin0_code)) %>%
   dplyr::select(admin0_code, date, cases, deaths)
 
 message("Most recent date: ", max(data$date))
