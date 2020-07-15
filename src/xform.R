@@ -62,7 +62,8 @@ who_regions <- admin0 %>%
   dplyr::left_join(geoutils::admin0, by = "admin0_code") %>%
   dplyr::group_by(who_region_code, date) %>%
   dplyr::summarise(cases = sum(cases), deaths = sum(deaths)) %>%
-  dplyr::filter(!is.na(who_region_code))
+  dplyr::filter(!is.na(who_region_code)) %>%
+  dplyr::filter(who_region_code != "Conveyance")
 
 global <- admin0 %>%
   dplyr::group_by(date) %>%
