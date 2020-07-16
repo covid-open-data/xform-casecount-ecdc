@@ -20,6 +20,8 @@ jobs:
         uses: ./.github/actions/validate-csv
       - name: Git Push
         uses: ./.github/actions/git-push
+        with:
+          push-dir: 'output'
       - name: Failure Notification
         if: failure()
         run: |
