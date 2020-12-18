@@ -1,9 +1,10 @@
-# Run every day at 2am Pacific
+# Run every day at 2am Pacific (turned off for now)
 on:
   workflow_dispatch:
     inputs:
   schedule:
-    - cron: "0 9 * * *"
+    - cron: ""
+    # - cron: "0 9 * * *"
 
 jobs:
   run-xform:
